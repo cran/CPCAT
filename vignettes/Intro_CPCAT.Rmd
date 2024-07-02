@@ -1,0 +1,36 @@
+---
+title: "Introduction to CPCAT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to CPCAT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(CPCAT)
+```
+
+The CPCAT is applicable to multiple testing problems of Poisson distributed data. It compares the mean of a control or reference group to the means of several treatment groups. The computational approach test (CAT) is used to compare the means of two or more groups. The closure principle (CP) prevents inflation of the type-I error.
+
+Example: Consinder a control group and 3 treatment groups. Let the main hypotheses be H01: µ0=µ1, H02: µ0=µ2 and H0:µ0=µ3. If the main hypotheses overlap type-I error inflation occurs. 
+Consider the intersection hypotheses H012: µ0=µ1=µ2, H013: µ0=µ1=µ3, H023: µ0=µ2=µ3 and H0123: µ0=µ1=µ2=µ3. Then, applying the CP devides a main hypothesis into a set of corresponding intersection hypotheses. For example, the main hypothesis H0: µ0=µ1 is devided into the intersection hypotheses H01, H012, H013 and H0123.
+
+Applying the CAT iteratively to H0123, H013, H012 and H01 the H01 is tested and the overall p-value is given by the maximum of the four corresponding intersection p-values. This combination of the CP and the CAT (i.e., the CPCAT) prevents type-I error inflation. 
+
+Sources
+
+Lehmann R., Bachmann J., Maletzki, D., Polleichtner C., Ratte H. T., Ratte M. (2015) A new approach to overcome shortcomings with multiple testing of reproduction data in ecotoxicology, Stochastic Environmental Research and Risk Assessment, DOI 10.1007/s00477-015-1079-4
+
+Ching-Hui Chang, Nabendu Pal & Jyh-Jiuan Lin (2010) A Note on Comparing
+Several Poisson Means, Communications in Statistics - Simulation and Computation, 39:8,
+1605-1627, DOI: 10.1080/03610918.2010.508860
+
+Bretz, F., Hothorn, T., & Westfall, P. (2010). Multiple Comparisons Using R (1st ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781420010909
